@@ -4,7 +4,6 @@ from telegram.request import HTTPXRequest
 from datetime import datetime
 import os
 
-# ✅ GitHub Secrets 이름 그대로 사용
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 
@@ -19,12 +18,14 @@ def get_market_news():
 """
 
 async def send_telegram_message(msg):
-    request = HTTPXRequest(httpx_kwargs={"verify": False})  # SSL 오류 방지
+    request = HTTPXRequest(httpx_kwargs={"verify": False})
     bot = Bot(token=TELEGRAM_BOT_TOKEN, request=request)
     await bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=msg)
 
 if __name__ == "__main__":
     asyncio.run(send_telegram_message(get_market_news()))
+
+
 
 
 
