@@ -18,16 +18,9 @@ def get_market_news():
 """
 
 async def send_telegram_message(msg):
-    request = HTTPXRequest(httpx_kwargs={"verify": False})
+    request = HTTPXRequest()   # ✅ 여기 수정됨
     bot = Bot(token=TELEGRAM_BOT_TOKEN, request=request)
     await bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=msg)
 
 if __name__ == "__main__":
     asyncio.run(send_telegram_message(get_market_news()))
-
-
-
-
-
-
-
